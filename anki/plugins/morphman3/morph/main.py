@@ -89,7 +89,7 @@ def mkAllDb( allDb=None ):
     return allDb
 
 def isAnalysisEnabled(noteConfig):
-	return ( not noteConfig('enabled') and not noteConfig('analyze'))
+    return ( not noteConfig('enabled') and not noteConfig('analyze'))
 
 def filterDbByMat( db, mat ):
     '''Assumes safe to use cached locDb'''
