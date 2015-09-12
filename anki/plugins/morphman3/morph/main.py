@@ -38,7 +38,7 @@ def mkAllDb( allDb=None ):
     for i,( nid, mid, flds, guid, tags ) in enumerate( db.execute( 'select id, mid, flds, guid, tags from notes' ) ):
         if i % 500 == 0:    mw.progress.update( value=i )
         C = partial( cfg, mid, None )
-        if not C('enabled'): continue
+        if isAnalysisEnabled(C): continue
         
         mats = [ ( 0.5 if ivl == 0 and ctype == 1 else ivl ) for ivl, ctype in db.execute( 'select ivl, type from cards where nid = :nid', nid=nid ) ]
         if C('ignore maturity'):
@@ -87,6 +87,9 @@ def mkAllDb( allDb=None ):
         printf( 'Processed all %d notes + saved all.db in %f sec' % ( N_notes, time.time() - t_0 ) )
     mw.progress.finish()
     return allDb
+
+def isAnalysisEnabled(noteConfig):
+	return ( not noteConfig('enabled') and not noteConfig('analyze'))
 
 def filterDbByMat( db, mat ):
     '''Assumes safe to use cached locDb'''

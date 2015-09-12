@@ -32,7 +32,8 @@ default = {
 
     # only these can have model overrides
     'enabled':False,    # whether to analyze notes of a given model, modify their fields, and manipulate due time by Morph Man Index
-    'set due based on mmi':True,    # whether to modify card Due times based on MorphManIndex. does nothing if relevant notes aren't enabled
+    'analyze':False,    # whether to analyze notes of a given model (no modification)
+	'set due based on mmi':True,    # whether to modify card Due times based on MorphManIndex. does nothing if relevant notes aren't enabled
     'ignore maturity':False,        # if True, pretends card maturity is always zero
         # field names to store various information
     'k+N':u'k+N',       # stores how many unknowns
